@@ -73,4 +73,23 @@ public class UserService {
 
         return mapper.toDto(user);
     }
+
+    // ========================
+    // TODO: implement update
+    // ========================
+    public UserResponseDto updateUser(UUID id, String newSub) {
+        // TODO: load user by id
+        // TODO: update fields (e.g., sub or other info)
+        // TODO: save and return updated user
+        throw new UnsupportedOperationException("Update user not implemented yet");
+    }
+
+    // ========================
+    // TODO: implement delete
+    // ========================
+    public void deleteUser(UUID id) {
+        // TODO: check if user exists
+        // TODO: remove user from DB
+        throw new UnsupportedOperationException("Delete user not implemented yet");
+    }
 }

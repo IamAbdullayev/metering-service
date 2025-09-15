@@ -78,4 +78,25 @@ public class MeterReadingService {
 
         return meterReadingMapper.toDto(reading);
     }
+
+    // ========================
+    // TODO: implement update
+    // ========================
+    public MeterReadingResponseDto updateMeterReading(UUID id, MeterReadingRequestDto requestDto, String sub) {
+        // TODO: load meterReading by id
+        // TODO: check that it belongs to the user (sub)
+        // TODO: update fields (value, readingDate)
+        // TODO: save and return updated meterReading
+        throw new UnsupportedOperationException("Update meter reading not implemented yet");
+    }
+
+    // ========================
+    // TODO: implement delete
+    // ========================
+    public void deleteMeterReading(UUID id, String sub) {
+        // TODO: load meterReading by id
+        // TODO: check that it belongs to the user (sub)
+        // TODO: delete meterReading
+        throw new UnsupportedOperationException("Delete meter reading not implemented yet");
+    }
 }

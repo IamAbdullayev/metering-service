@@ -54,7 +54,7 @@ public class MeterService {
     public MeterResponseDto getMeterById(UUID id, String sub) {
         User user = userService.getBySub(sub);
 
-        Meter meter = meterRepository.findById(id)
+        Meter meter = meterRepository.findMeterById(id)
                 .orElseThrow(() -> new NotFoundException("Meter not found: " + id));
 
         if (!meter.getUser().getId().equals(user.getId())) {
@@ -76,5 +76,26 @@ public class MeterService {
         log.debug("Found meter id={} type={} unit={}", meter.getId(), meter.getType(), meter.getUnit());
 
         return meter;
+    }
+
+    // ========================
+    // TODO: implement update
+    // ========================
+    public MeterResponseDto updateMeter(UUID id, MeterRequestDto requestDto, String sub) {
+        // TODO: load meter by id
+        // TODO: check that it belongs to the user (sub)
+        // TODO: update fields (type, unit, name, location)
+        // TODO: save and return updated meter
+        throw new UnsupportedOperationException("Update meter not implemented yet");
+    }
+
+    // ========================
+    // TODO: implement delete
+    // ========================
+    public void deleteMeter(UUID id, String sub) {
+        // TODO: load meter by id
+        // TODO: check that it belongs to the user (sub)
+        // TODO: delete meter
+        throw new UnsupportedOperationException("Delete meter not implemented yet");
     }
 }

@@ -1,8 +1,6 @@
 package com.ramazan.metering.controller;
 
-import com.ramazan.metering.controller.dto.MeterReadingResponseDto;
 import com.ramazan.metering.controller.dto.UserResponseDto;
-import com.ramazan.metering.model.entity.User;
 import com.ramazan.metering.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -32,29 +30,26 @@ public class UserController {
     private final UserService userService;
 
     @Operation(
-            summary = "...",
-            description = "....")
+            summary = "Create a new user",
+            description = "Registers a new user with the given subject ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "....",
+            @ApiResponse(responseCode = "200", description = "User successfully created",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - no valid JWT token provided")
+            @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
     @PostMapping
     public ResponseEntity<UserResponseDto> createUser(@RequestParam String sub) {
-        return ResponseEntity.status(201).body(userService.createUser(sub));
+        return ResponseEntity.ok(userService.createUser(sub));
     }
 
     @Operation(
-            summary = "....",
-            description = "....")
+            summary = "Get all users",
+            description = "Fetch a list of all registered users")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "....",
+            @ApiResponse(responseCode = "200", description = "List of users",
                     content = @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = UserResponseDto.class)))),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - no valid JWT token provided")
+                            array = @ArraySchema(schema = @Schema(implementation = UserResponseDto.class))))
     })
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
@@ -62,14 +57,13 @@ public class UserController {
     }
 
     @Operation(
-            summary = "Get user by id",
-            description = ".....")
+            summary = "Get user by ID",
+            description = "Fetch a specific user by their UUID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "....",
+            @ApiResponse(responseCode = "200", description = "User successfully found",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - no valid JWT token provided")
+            @ApiResponse(responseCode = "404", description = "User not found")
     })
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable UUID id) {

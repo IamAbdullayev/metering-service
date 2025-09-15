@@ -28,6 +28,18 @@ public class GlobalExceptionHandler {
         return handleException(HttpStatus.FORBIDDEN, e, request, e.getMessage());
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ResponseExceptionBody> handleIllegalArgumentException(IllegalArgumentException e,
+                                                                                HttpServletRequest request) {
+        return handleException(HttpStatus.BAD_REQUEST, e, request, e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ResponseExceptionBody> handleGeneralException(Exception e,
+                                                                 HttpServletRequest request) {
+        return handleException(HttpStatus.INTERNAL_SERVER_ERROR, e, request, e.getMessage());
+    }
+
     private ResponseEntity<ResponseExceptionBody> handleException(HttpStatus status,
                                                                   Exception e,
                                                                   HttpServletRequest request,
