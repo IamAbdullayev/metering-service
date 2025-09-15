@@ -21,6 +21,16 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8088/realms/meter-app
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8088/realms/meter-app
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: meter-api
+            client-secret: BROxD0mVsJuHZLETYWbPEpoxqtjXpbqA
+            scope: openid
   flyway:
     enabled: true
     baseline-on-migrate: true
