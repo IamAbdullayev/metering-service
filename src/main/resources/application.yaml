@@ -29,7 +29,7 @@ spring:
 logging:
   level:
     root: INFO
-    com.ramazan.metering: DEBUG  # ???? ??????
+    com.ramazan.metering: DEBUG
 
 management:
   endpoints:
@@ -47,3 +47,4 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
+  show-actuator: true
