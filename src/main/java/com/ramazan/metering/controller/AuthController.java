@@ -40,7 +40,7 @@ public class AuthController {
     @PostMapping("/token")
     public ResponseEntity<String> getToken(@RequestParam String username,
                                            @RequestParam String password) {
-        String url = "http://localhost:8088/realms/meter-app/protocol/openid-connect/token";
+        String url = "http://localhost:8081/realms/meter-app/protocol/openid-connect/token";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -48,7 +48,7 @@ public class AuthController {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "password");
         body.add("client_id", "meter-api");
-        body.add("client_secret", "BROxD0mVsJuHZLETYWbPEpoxqtjXpbqA");
+        body.add("client_secret", "MnbTRhVBBJ7qxIVdh2AmaO2iPNyRYzmi");
         body.add("username", username);
         body.add("password", password);
 

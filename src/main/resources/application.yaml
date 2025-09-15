@@ -5,7 +5,7 @@ spring:
   application:
     name: metering-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/meteringdb
+    url: jdbc:postgresql://db:5432/metering-db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -20,17 +20,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8088/realms/meter-app
-      client:
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8088/realms/meter-app
-            user-name-attribute: preferred_username
-        registration:
-          keycloak:
-            client-id: meter-api
-            client-secret: BROxD0mVsJuHZLETYWbPEpoxqtjXpbqA
-            scope: openid
+          issuer-uri: http://keycloak:8080/realms/meter-app
   flyway:
     enabled: true
     baseline-on-migrate: true
