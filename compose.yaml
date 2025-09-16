@@ -17,6 +17,13 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://keycloak:8080/realms/meter-app
+
+      KEYCLOAK_REALM: meter-app
+      KEYCLOAK_CLIENT_ID: meter-api
+      KEYCLOAK_CLIENT_SECRET: MnbTRhVBBJ7qxIVdh2AmaO2iPNyRYzmi
+      KEYCLOAK_GRANT_TYPE: password
+      KEYCLOAK_URL: http://keycloak:8080
+
     networks:
       - metering-net
 

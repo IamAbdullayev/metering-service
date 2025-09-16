@@ -1,23 +1,28 @@
 package com.ramazan.metering.controller;
 
+import com.ramazan.metering.properties.KeycloakProperties;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/auth")
 @Tag(name = "Auth API", description = "Endpoints for obtaining access tokens via Keycloak")
 public class AuthController {
 
     private final RestTemplate restTemplate = new RestTemplate();
+    private final KeycloakProperties props;
 
     @Operation(
             summary = "Get access token",
@@ -40,15 +45,17 @@ public class AuthController {
     @PostMapping("/token")
     public ResponseEntity<String> getToken(@RequestParam String username,
                                            @RequestParam String password) {
-        String url = "http://keycloak:8080/realms/meter-app/protocol/openid-connect/token";
+
+        String url = String.format("%s/realms/%s/protocol/openid-connect/token",
+                props.getUrl(), props.getRealm());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("grant_type", "password");
-        body.add("client_id", "meter-api");
-        body.add("client_secret", "MnbTRhVBBJ7qxIVdh2AmaO2iPNyRYzmi");
+        body.add("grant_type", props.getGrantType());
+        body.add("client_id", props.getClientId());
+        body.add("client_secret", props.getClientSecret());
         body.add("username", username);
         body.add("password", password);
 
