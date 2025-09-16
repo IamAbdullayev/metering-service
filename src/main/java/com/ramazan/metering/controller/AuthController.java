@@ -40,7 +40,7 @@ public class AuthController {
     @PostMapping("/token")
     public ResponseEntity<String> getToken(@RequestParam String username,
                                            @RequestParam String password) {
-        String url = "http://localhost:8081/realms/meter-app/protocol/openid-connect/token";
+        String url = "http://keycloak:8080/realms/meter-app/protocol/openid-connect/token";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
